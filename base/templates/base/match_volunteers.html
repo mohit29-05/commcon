@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Volunteer Matches</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Matched Projects</h1>
+    <p>Here are the projects that match your interests:</p>
+    <ul>
+        {% for project in matched_projects %}
+        <li>
+            <h2>{{ project.name }}</h2>
+            <p>{{ project.description }}</p>
+            <p>Interests: {% for interest in project.interests.all %}{{ interest.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>
